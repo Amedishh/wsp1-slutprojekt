@@ -7,7 +7,19 @@
     <link rel="stylesheet" type="text/css" href="/style.css?<%=Time.now.to_i%>">
 </head>
 <body>
-  <h1>Yourney<p>Your Life, Your Story</h1>
-  <img src="/img/glhf.png">
+  <header>
+   <h1>Yourney</h1>
+   <h1>Your Life, Your Story</h1>
+  </header>
+  <hr>
+  <nav>
+    <ul>
+      <li><a href="/bloggs/new">New Post</a></li>
+    </ul>
+  </nav>
+  <%= yield %>
+
+
+  
 </body>
 </html>

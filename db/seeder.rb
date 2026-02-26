@@ -1,4 +1,5 @@
 require 'sqlite3'
+require_relative '../config'
 
 class Seeder
 
@@ -14,22 +15,21 @@ class Seeder
   end
 
   def self.drop_tables
-    db.execute('DROP TABLE IF EXISTS accounts')
+    db.execute('DROP TABLE IF EXISTS bloggs')
   end
 
   def self.create_tables
-    db.execute('CREATE TABLE accounts (
+    db.execute('CREATE TABLE bloggs (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT NOT NULL,
+                heading TEXT NOT NULL,
                 category_id INTEGER, 
-                description TEXT,
-                done INTEGER)')
+                description TEXT)')
   end
 
   def self.populate_tables
-    db.execute('INSERT INTO accounts (name, description, done) VALUES ("Köp mjölk", "3 lite mellanmjölk, eko,", 1)')
-    db.execute('INSERT INTO accounts (name, description, done) VALUES ("Köp julgran", "En rödgran", 0)')
-    db.execute('INSERT INTO accounts (name, description, done) VALUES ("Pynta gran", "Glöm inte lamporna i granen och tomten", 0)')
+    db.execute('INSERT INTO bloggs (heading, description) VALUES ("Mina hobbyn", "Mi bomb")')
+    db.execute('INSERT INTO bloggs (heading, description) VALUES ("Mitt arbete", "mi boommbaaa")')
+    db.execute('INSERT INTO bloggs (heading, description) VALUES ("Mina äventyr", "MI BOMBAAA")')
   end
 
   private
