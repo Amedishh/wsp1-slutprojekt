@@ -1,0 +1,11 @@
+<h2>Edit your blog</h2>
+
+<form action="/bloggs/<%= @blogg['id']%>/update" method="post">
+  <label> 
+      <input type="text" name="heading" value="<%= @blogg['heading']%>">
+  </label>
+  <label>
+      <input type="text" name="description" value="<%= @blogg['description']%>">
+  </label>
+  <input type="submit" value="Update">
+</form>
