@@ -1,6 +1,9 @@
 require 'debug'
 require "awesome_print"
 
+require_relative 'models/blogg'
+require_relative 'models/base'
+
 class App < Sinatra::Base
 
     setup_development_features(self)
@@ -39,8 +42,8 @@ class App < Sinatra::Base
       p params
       rubrik = params["heading"]
       beskrivning = params["description"]
-      db.execute("INSERT INTO bloggs (heading, description) VALUES (?,?)", [rubrik, beskrivning])
-      redirect("bloggs")
+      Blogg.create(rubrik, beskrivning)
+      redirect("/bloggs")
     end
 
     # Routen visar all info (från databasen) om en blogg
