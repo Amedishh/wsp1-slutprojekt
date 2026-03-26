@@ -26,14 +26,13 @@ class App < Sinatra::Base
 
     #Routen hämtar alla bloggs i databasen
     get '/bloggs' do
-      @bloggs = db.execute('SELECT * FROM bloggs')
+      @bloggs = Blogg.all
       p @bloggs
       erb(:"bloggs/index")
     end
 
     # Routen visar ett formulär för att spara en ny inlägg till databasen.
     get '/bloggs/new' do
-
       erb(:"bloggs/new")
     end
 
@@ -48,15 +47,15 @@ class App < Sinatra::Base
 
     # Routen visar all info (från databasen) om en blogg
     get '/bloggs/:id' do | id |
-      @blogg = db.execute('SELECT * FROM bloggs where id=?', id).first
+      @blogg = Blogg.find(id)
       p @blogg
       erb(:"bloggs/show")
     end
    
     # Routen tar bort bloggen med id
     post '/bloggs/:id/delete' do | id |
-      db.execute("DELETE FROM bloggs WHERE id=?", id)
-      redirect"/bloggs"
+      Blogg.delete(id)
+      redirect("/bloggs")
     end
     
     # Routen visar ett formulär på edit.erb för att ändra bloggen med id
@@ -71,7 +70,7 @@ class App < Sinatra::Base
       u_beskrivning = params["description"]
       p u_beskrivning
       db.execute("UPDATE bloggs SET heading =?, description =? WHERE id =?", [u_rubrik, u_beskrivning, id])
-      redirect("bloggs")
+      redirect("/bloggs")
     end
 
     
