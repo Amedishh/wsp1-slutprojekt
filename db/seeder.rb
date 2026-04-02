@@ -16,15 +16,24 @@ class Seeder
 
   def self.drop_tables
     db.execute('DROP TABLE IF EXISTS bloggs')
+    db.execute('DROP TABLE IF EXISTS categories')
   end
 
   def self.create_tables
-    db.execute('CREATE TABLE bloggs (
+    db.execute('CREATE TABLE "bloggs" (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                "id" INTEGER NOT NULL UNIQUE,
                 heading TEXT NOT NULL,
                 category_id INTEGER, 
                 description TEXT)')
+
+    db.execute('CREATE TABLE "categories" (
+               id INTEGER PRIMARY KEY AUTOINCREMENT,
+               "id" INTEGER NOT NULL UNIQUE,
+               "category_title" TEXT,
+               )')
   end
+
 
   def self.populate_tables
     db.execute('INSERT INTO bloggs (heading, description) VALUES ("Mina hobbyn", "Mi bomb")')
