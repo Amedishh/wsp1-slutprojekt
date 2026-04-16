@@ -26,4 +26,11 @@ class Blogg < Base
     db.execute('DELETE FROM bloggs WHERE id=?', id)
   end
 
+  def self.update(id, rubrik, beskrivning)
+    sql_save_blogg = 'UPDATE bloggs SET heading =?, description =? WHERE id =?'
+    p rubrik
+    p beskrivning
+    db.execute(sql_save_blogg, [rubrik, beskrivning, id])
+  end
+
 end

@@ -22,15 +22,13 @@ class Seeder
   def self.create_tables
     db.execute('CREATE TABLE "bloggs" (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                "id" INTEGER NOT NULL UNIQUE,
                 heading TEXT NOT NULL,
                 category_id INTEGER, 
                 description TEXT)')
 
     db.execute('CREATE TABLE "categories" (
                id INTEGER PRIMARY KEY AUTOINCREMENT,
-               "id" INTEGER NOT NULL UNIQUE,
-               "category_title" TEXT,
+               category_title TEXT
                )')
   end
 

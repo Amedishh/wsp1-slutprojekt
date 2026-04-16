@@ -60,7 +60,7 @@ class App < Sinatra::Base
     
     # Routen visar ett formulär på edit.erb för att ändra bloggen med id
     get '/bloggs/:id/edit' do | id |
-      @blogg = db.execute('SELECT * FROM bloggs where id=?', id).first
+      @blogg = Blogg.find(id)
       erb(:"bloggs/edit")
     end
 
@@ -68,8 +68,7 @@ class App < Sinatra::Base
     post "/bloggs/:id/update" do | id |
       u_rubrik = params["heading"]
       u_beskrivning = params["description"]
-      p u_beskrivning
-      db.execute("UPDATE bloggs SET heading =?, description =? WHERE id =?", [u_rubrik, u_beskrivning, id])
+      Blogg.update(id, u_rubrik, u_beskrivning)
       redirect("/bloggs")
     end
 
