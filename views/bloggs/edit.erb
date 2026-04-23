@@ -1,4 +1,4 @@
-<h2>Edit your blog</h2>
+<h2>Edit your blogg</h2>
 
 <form action="/bloggs/<%= @blogg['id']%>/update" method="post">
   <label> 
@@ -6,6 +6,9 @@
   </label>
   <label>
       <input type="text" name="description" value="<%= @blogg['description']%>">
+  </label>
+  <label>
+      <input type="text" name="category_id" value="<%= @blogg['category_id']%>">
   </label>
   <input type="submit" value="Update">
 </form>

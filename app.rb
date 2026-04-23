@@ -41,6 +41,7 @@ class App < Sinatra::Base
       p params
       rubrik = params["heading"]
       beskrivning = params["description"]
+      tema = params["category_id"]
       Blogg.create(rubrik, beskrivning)
       redirect("/bloggs")
     end
@@ -68,6 +69,7 @@ class App < Sinatra::Base
     post "/bloggs/:id/update" do | id |
       u_rubrik = params["heading"]
       u_beskrivning = params["description"]
+      u_tema = params["category_id"]
       Blogg.update(id, u_rubrik, u_beskrivning)
       redirect("/bloggs")
     end

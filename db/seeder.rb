@@ -34,9 +34,13 @@ class Seeder
 
 
   def self.populate_tables
-    db.execute('INSERT INTO bloggs (heading, description) VALUES ("Mina hobbyn", "Mi bomb")')
-    db.execute('INSERT INTO bloggs (heading, description) VALUES ("Mitt arbete", "mi boommbaaa")')
-    db.execute('INSERT INTO bloggs (heading, description) VALUES ("Mina äventyr", "MI BOMBAAA")')
+    db.execute('INSERT INTO bloggs (heading, description, category_id) VALUES ("Mina hobbyn", "Jag gillar nämligen att...", 1)')
+    db.execute('INSERT INTO bloggs (heading, description, category_id) VALUES ("Mitt arbete", "Idag så jobbar jag med...", 2)')
+    db.execute('INSERT INTO bloggs (heading, description, category_id) VALUES ("Mina äventyr", "Mina resor kring världen...", 3)')
+
+    db.execute('INSERT INTO categories (category_title) VALUES ("Nature")')
+    db.execute('INSERT INTO categories (category_title) VALUES ("Technology")')
+    db.execute('INSERT INTO categories (category_title) VALUES ("Adventure")')
   end
 
   private
