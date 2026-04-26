@@ -1,4 +1,4 @@
-<h2>Edit your blogg</h2>
+<h2>Redigera din blogg</h2>
 
 <form action="/bloggs/<%= @blogg['id']%>/update" method="post">
   <label> 
@@ -8,7 +8,14 @@
       <input type="text" name="description" value="<%= @blogg['description']%>">
   </label>
   <label>
-      <input type="text" name="category_id" value="<%= @blogg['category_id']%>">
+      <select name="category_id">
+            <% @categories.each do |cat| %>
+            <option value="<%= cat["id"]%>"
+            <%= "selected" if cat["id"] == @blogg["category_id"] %>>
+            <%= cat["category_title"] %>
+            </option>
+        <% end %>
+      </select>
   </label>
   <input type="submit" value="Update">
 </form>

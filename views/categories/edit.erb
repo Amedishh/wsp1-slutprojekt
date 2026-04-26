@@ -1,0 +1,16 @@
+<section>
+    <h1>Ändra kategori</h1>
+
+    <form action="/categories/<%= @category['id'] %>/update" method="post">
+      <input type="text" name="category_title" value="<%= @category['category_title'] %>">
+      <input type="submit" value="Spara">
+    </form>
+</section>
+
+<section>
+    <h2>Alla bloggs i denna kategori</h2>
+
+    <% @bloggs.each do |blogg| %>
+     <p><%= blogg["heading"]%></p>
+    <% end %>
+</section>

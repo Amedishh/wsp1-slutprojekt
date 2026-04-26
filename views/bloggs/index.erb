@@ -5,11 +5,18 @@
     <a href="/bloggs/<%= blogg["id"]%>">
      <%= blogg['heading'] %>
     </a>
-    
+
+    <p>
+      <%= blogg["category_title"] %>
+    </p>
+
+
     <form class="delete" action="/bloggs/<%= blogg["id"]%>/delete" method="post">
     <input type="submit" value="Remove">
-    <a class="edit" href="/bloggs/<%=blogg["id"]%>/edit">Edit</a>
     </form>
+
+    <a class="edit" href="/bloggs/<%=blogg["id"]%>/edit">Edit</a>
+
   </li>
 <% end %>
 </ul>

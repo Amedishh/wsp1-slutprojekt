@@ -47,7 +47,7 @@ class Blogg < Base
     FROM bloggs
       INNER JOIN categories
         ON bloggs.category_id = categories.id
-      WHERE bloggs.id = ?'
+      WHERE bloggs.category_id = ?'
 
     bloggs = db.execute(sql_bloggs, category_id)
     return bloggs

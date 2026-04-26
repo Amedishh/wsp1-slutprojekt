@@ -7,6 +7,15 @@
     <link rel="stylesheet" type="text/css" href="/style.css?<%=Time.now.to_i%>">
 </head>
 <body>
+  <div id="login-info">
+    <% if @current_user %>
+      <span>Inloggad som: <%= @current_user['username'] %></span>
+    <% else %>
+      <span>Ej inloggad</span>
+    <% end %>
+  </div>
+
+
   <header>
     <a href="/bloggs">
       <h1>Yourney<p>Your Life, Your Story</h1>
@@ -16,6 +25,16 @@
   <nav>
     <ul>
       <li><a href="/bloggs/new">New Post</a></li>
+
+      <% if @current_user %>
+        <li>
+          <form action="/logout" method="post">
+            <input type="submit" value="Logga ut">
+          </form>
+        </li>
+      <% else %>
+        <li><a href="/login">Logga in</a></li>
+      <% end %>
     </ul>
   </nav>
   <%= yield %>

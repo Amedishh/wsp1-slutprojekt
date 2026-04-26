@@ -8,7 +8,13 @@
         <input type="text" name="description">
     </label>
      <label> Category
-        <input type="text" name="category_id">
+        <select name="category_id">
+            <% @categories.each do |cat| %>
+            <option value="<%= cat["id"]%>">
+            <%= cat["category_title"] %>
+            </option>
+          <% end %>
+        </select>
     </label>
     
 

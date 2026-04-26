@@ -1,4 +1,5 @@
 require 'sqlite3'
+require 'bcrypt'
 require_relative '../config'
 
 class Seeder
@@ -17,6 +18,7 @@ class Seeder
   def self.drop_tables
     db.execute('DROP TABLE IF EXISTS bloggs')
     db.execute('DROP TABLE IF EXISTS categories')
+    db.execute('DROP TABLE IF EXISTS users')
   end
 
   def self.create_tables
@@ -24,12 +26,19 @@ class Seeder
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 heading TEXT NOT NULL,
                 category_id INTEGER, 
-                description TEXT)')
+                description TEXT
+                )')
 
     db.execute('CREATE TABLE "categories" (
                id INTEGER PRIMARY KEY AUTOINCREMENT,
                category_title TEXT
                )')
+
+    db.execute('CREATE TABLE users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT NOT NULL,
+                password TEXT NOT NULL
+              )')
   end
 
 
@@ -41,6 +50,10 @@ class Seeder
     db.execute('INSERT INTO categories (category_title) VALUES ("Nature")')
     db.execute('INSERT INTO categories (category_title) VALUES ("Technology")')
     db.execute('INSERT INTO categories (category_title) VALUES ("Adventure")')
+
+    password_hashed = BCrypt::Password.create("123")
+
+    db.execute('INSERT INTO users (username, password) VALUES (?, ?)', ["admin", password_hashed])
   end
 
   private
